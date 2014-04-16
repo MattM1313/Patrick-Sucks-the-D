@@ -498,7 +498,7 @@ GameObject:
   - 114: {fileID: 1215383827}
   m_Layer: 0
   m_Name: Hamster
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -579,6 +579,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f556dec89c57dfd468f0f2577072f85b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPaused: 0
   torqueForce: 20
   wheel: {fileID: 796308261}
   touchingWheel: 0
@@ -617,7 +618,8 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 11400006, guid: 30173be9512437a44bae025b3454d790, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 30173be9512437a44bae025b3454d790, type: 2}
   m_RootGameObject: {fileID: 1317894647}
   m_IsPrefabParent: 0
@@ -632,7 +634,7 @@ GameObject:
   - 4: {fileID: 1317894648}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

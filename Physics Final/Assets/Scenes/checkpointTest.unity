@@ -172,7 +172,8 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 11400006, guid: fc8932d0bb9e942449b97a8c29b0eae2, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: fc8932d0bb9e942449b97a8c29b0eae2, type: 2}
   m_RootGameObject: {fileID: 1690930588}
   m_IsPrefabParent: 0
@@ -348,7 +349,6 @@ GameObject:
   - 212: {fileID: 796308264}
   - 50: {fileID: 796308265}
   - 60: {fileID: 796308263}
-  - 114: {fileID: 796308266}
   m_Layer: 0
   m_Name: Wheel
   m_TagString: Untagged
@@ -516,22 +516,6 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
---- !u!114 &796308266
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400006, guid: fc8932d0bb9e942449b97a8c29b0eae2,
-    type: 2}
-  m_PrefabInternal: {fileID: 295802571}
-  m_GameObject: {fileID: 796308261}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0561e5c66089584492124447e9e2702, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  waterLevel: -4
-  floatHeight: 1
-  buoyancyCentreOffset: {x: 0, y: 0, z: 0}
-  bounceDamp: .300000012
 --- !u!1 &823402427
 GameObject:
   m_ObjectHideFlags: 0
