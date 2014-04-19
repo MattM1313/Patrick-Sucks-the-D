@@ -4,12 +4,15 @@ using System.Collections;
 public class LevelSelectCreate : MonoBehaviour {
 
 	public int selGridInt;
-	private string[] selStrings = new string[] {"Grid 1", "Grid 2", "Grid 3", "Grid 4", "Grid 5", "Grid 6", "Grid 7", "Grid 8", "Grid 9", "Grid 10", "Grid 11", "Grid 12", "Grid 13", "Grid 14", "Grid 15"};
+	private string[] selStrings = new string[] {"Level 1", "Level 2", "Level 3", "Level 4", "Level 5", "Level 6", "Level 7", "Level 8", "Level 9", "Level 10", "Level 11", "Level 12", "Level 13", "Level 14", "Level 15"};
 
 	void OnGUI() 
 	{
-		selGridInt = GUI.SelectionGrid(new Rect(25, 25, 575, 300), selGridInt, selStrings, 5);
-		Application.LoadLevel(selGridInt);
+		selGridInt = GUI.SelectionGrid(new Rect(500, 25, 320, 100), selGridInt, selStrings, 5);
+
+        if (GUI.Button(new Rect(680, 430, 100, 20), "Accept") && selGridInt >= 0) {
+            Application.LoadLevel("Level" + (selGridInt + 1));
+        }
 	}
 
 	void OnMouseOver()

@@ -74,6 +74,55 @@ NavMeshSettings:
     widthInaccuracy: 16.666666
     heightInaccuracy: 10
   m_NavMesh: {fileID: 0}
+--- !u!1 &439372993
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 439372995}
+  - 114: {fileID: 439372994}
+  m_Layer: 0
+  m_Name: Sky
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &439372994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 439372993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a54d7215051f30a4b96142b4f6fa0e85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  list: []
+  tiles:
+  - {fileID: 100000, guid: ca88e3a128c221c4386095a7adf3eaf7, type: 2}
+  - {fileID: 100000, guid: d717676ec66badc4a8f6004f97c6e696, type: 2}
+  - {fileID: 100000, guid: 3d1457a07a0dc22428608ca625d13f09, type: 2}
+  - {fileID: 100000, guid: a3bd56f6e9984ae45a378fca6ae70509, type: 2}
+  - {fileID: 100000, guid: a6803d7c1a2a98b4da9f5ec6fd15a395, type: 2}
+  height: 10
+  width: 22
+  startingHeight: -4
+  startingWidth: -11
+--- !u!4 &439372995
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 439372993}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
 --- !u!1 &715014754
 GameObject:
   m_ObjectHideFlags: 0
@@ -134,7 +183,7 @@ Camera:
   near clip plane: .300000012
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
+  orthographic: 1
   orthographic size: 5
   m_Depth: -1
   m_CullingMask:
