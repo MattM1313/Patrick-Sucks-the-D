@@ -22,7 +22,7 @@ public class RopeBridgeCreator : MonoBehaviour {
 
         GameObject lastJoint = gameObject;
         for (int i = 0; i < numLinks; ++i) {
-            Vector3 pos = new Vector3((linkDist + linkSize / 2) * (i + 1), transform.position.y, transform.position.z);
+            Vector3 pos = new Vector3(transform.position.x + ((linkDist + linkSize / 2) * (i + 1)), transform.position.y, transform.position.z);
             GameObject link = Instantiate(linkPrefab, pos, Quaternion.identity) as GameObject;
             link.transform.parent = transform;
 
