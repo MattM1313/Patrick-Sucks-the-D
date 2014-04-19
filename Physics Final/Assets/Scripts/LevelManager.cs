@@ -66,4 +66,9 @@ public class LevelManager : MonoBehaviour {
         }
     }
 
+    public void OnGUI()
+    {
+        GUI.Label(new Rect(10,10, 200,50), new GUIContent("Your Time: "+ timer));
+    }
+
 }
