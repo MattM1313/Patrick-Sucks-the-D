@@ -8,12 +8,10 @@ public class PlayerController : MonoBehaviour {
     public float torqueForce;
     public GameObject wheel;
     public bool touchingWheel;
+    public float maxAngularSpeed;
 
-    private const int FLIP_DELAY = 2;
+    private const int FLIP_DELAY = 1;
     private bool canFlip = true;
-
-	void Start () {
-	}
 
     void Update() {
         if (!isPaused) {
@@ -31,6 +29,8 @@ public class PlayerController : MonoBehaviour {
             if (Input.GetKeyDown(KeyCode.Space)) {
                 LevelManager.ResetToCheckpoint();
             }
+
+            wheel.rigidbody2D.angularVelocity = Mathf.Clamp(wheel.rigidbody2D.angularVelocity, -maxAngularSpeed, maxAngularSpeed);
         }
     }
 
@@ -57,6 +57,11 @@ public class PlayerController : MonoBehaviour {
         rigidbody2D.angularVelocity = 0;
         wheel.rigidbody2D.velocity = Vector2.zero;
         wheel.rigidbody2D.angularVelocity = 0;
+    }
+
+
+    public void OnTriggerEnter2D(Collider2D col) {
+        
     }
 
 }
