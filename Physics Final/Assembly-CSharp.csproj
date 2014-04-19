@@ -54,6 +54,7 @@
      <Compile Include="Assets\Scripts\LevelSelectCreate.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
      <Compile Include="Assets\Scripts\PlayerFeet.cs" />
+     <Compile Include="Assets\Scripts\RopeBridgeCreator.cs" />
      <None Include="Assets\Audio\Sound Effects\New Text Document.txt" />
      <None Include="Assets\Images\GUI\New Text Document.txt" />
      <None Include="Assets\Audio\Music\New Text Document.txt" />
