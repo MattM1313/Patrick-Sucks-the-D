@@ -3,8 +3,6 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 
-    public bool isPaused = true;
-
     public float torqueForce;
     public GameObject wheel;
     public bool touchingWheel;
@@ -13,8 +11,25 @@ public class PlayerController : MonoBehaviour {
     private const int FLIP_DELAY = 1;
     private bool canFlip = true;
 
+    private bool isControllable;
+    public bool IsControllable { get; set; }
+
+    private bool isFrozen;
+    public bool IsFrozen {
+        get { return isFrozen; }
+        set {
+            isFrozen = value;
+            if (isFrozen) {
+                isControllable = false;
+            }
+
+            gameObject.rigidbody2D.gravityScale = isFrozen ? 0 : 1;
+            wheel.rigidbody2D.gravityScale = isFrozen ? 0 : 1;
+        }
+    }
+
     void Update() {
-        if (!isPaused) {
+        if (!isControllable) {
             if (touchingWheel) {
                 if (Input.GetAxis("Horizontal") != 0) {
                     wheel.rigidbody2D.AddTorque(torqueForce * -Input.GetAxis("Horizontal"));
@@ -57,11 +72,6 @@ public class PlayerController : MonoBehaviour {
         rigidbody2D.angularVelocity = 0;
         wheel.rigidbody2D.velocity = Vector2.zero;
         wheel.rigidbody2D.angularVelocity = 0;
-    }
-
-
-    public void OnTriggerEnter2D(Collider2D col) {
-        
     }
 
 }

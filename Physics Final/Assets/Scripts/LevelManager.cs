@@ -16,7 +16,7 @@ public class LevelManager : MonoBehaviour {
 
     void Start() {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-        player.isPaused = true;
+        player.IsFrozen = true;
 
         lastCheckpoint = player.gameObject.transform.position;
     }
@@ -33,7 +33,8 @@ public class LevelManager : MonoBehaviour {
                 isCountingDown = false;
                 countdownTimer = 0;
                 countDownState = 0;
-                player.GetComponent<PlayerController>().isPaused = false;
+                player.IsFrozen = false;
+                player.IsControllable = true;
                 Debug.Log("GO");
             }
         }
@@ -50,7 +51,7 @@ public class LevelManager : MonoBehaviour {
 
     public static void FinishLevel() {
         ++checkpointsHit;
-        player.isPaused = true;
+        player.IsControllable = true;
         Debug.Log("Level finished in " + timer);
     }
 
