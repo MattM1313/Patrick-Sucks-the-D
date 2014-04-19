@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class RobeBridgeCreator : MonoBehaviour {
+public class RopeBridgeCreator : MonoBehaviour {
 
     public GameObject rightAnchor, linkPrefab;
     public int numLinks;
