@@ -24,6 +24,7 @@ public class RopeBridgeCreator : MonoBehaviour {
         for (int i = 0; i < numLinks; ++i) {
             Vector3 pos = new Vector3((linkDist + linkSize / 2) * (i + 1), transform.position.y, transform.position.z);
             GameObject link = Instantiate(linkPrefab, pos, Quaternion.identity) as GameObject;
+            link.transform.parent = transform;
 
             DistanceJoint2D joint = link.GetComponent<DistanceJoint2D>();
             joint.connectedBody = lastJoint.rigidbody2D;

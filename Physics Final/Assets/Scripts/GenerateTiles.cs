@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class GenerateTiles : MonoBehaviour {
 
-    public List<Object> list;
+    public List<GameObject> list;
     public GameObject[] tiles;
 
     public int height;
@@ -15,11 +15,9 @@ public class GenerateTiles : MonoBehaviour {
         height += startingHeight;
         width += startingWidth;
 
-        int k = 0;
         for (int i = startingHeight; i < height; ++i) {
             for (int j = startingWidth; j < width; ++j) {
-                ++k;
-                list.Add(Instantiate(tiles[Random.Range(0, tiles.Length)], new Vector3(j, i), Quaternion.identity));
+                list.Add(Instantiate(tiles[Random.Range(0, tiles.Length)], new Vector3(j, i), Quaternion.identity) as GameObject);
             }
         }
 
