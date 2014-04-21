@@ -10,6 +10,7 @@ GameObject:
   - 4: {fileID: 400000}
   - 50: {fileID: 5000000}
   - 233: {fileID: 23300000}
+  - 212: {fileID: 21200002}
   m_Layer: 0
   m_Name: Right Anchor
   m_TagString: Untagged
@@ -28,6 +29,7 @@ GameObject:
   - 114: {fileID: 11400000}
   - 50: {fileID: 5000002}
   - 233: {fileID: 23300002}
+  - 212: {fileID: 21200000}
   m_Layer: 0
   m_Name: BridgeBuilder
   m_TagString: Untagged
@@ -102,6 +104,52 @@ MonoBehaviour:
   rightAnchor: {fileID: 100000}
   linkPrefab: {fileID: 100000, guid: b0d8ec39d3ed2e24fb9874928f9f24ad, type: 2}
   numLinks: 7
+--- !u!212 &21200000
+SpriteRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100002}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortingLayerID: 0
+  m_Sprite: {fileID: 21300000, guid: 30f7f62e6b1c2a74c937579e0f764816, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!212 &21200002
+SpriteRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortingLayerID: 0
+  m_Sprite: {fileID: 21300000, guid: 30f7f62e6b1c2a74c937579e0f764816, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!233 &23300000
 HingeJoint2D:
   m_ObjectHideFlags: 1

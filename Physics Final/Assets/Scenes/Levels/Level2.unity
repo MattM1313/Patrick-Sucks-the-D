@@ -16039,7 +16039,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 970557184}
   followTarget: 1
-  cameraDist: 15
+  cameraDist: 30
 --- !u!81 &946841788
 AudioListener:
   m_ObjectHideFlags: 0
@@ -22902,6 +22902,10 @@ Prefab:
     - target: {fileID: 400000, guid: fc8932d0bb9e942449b97a8c29b0eae2, type: 2}
       propertyPath: m_LocalPosition.y
       value: 54.5517273
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400006, guid: fc8932d0bb9e942449b97a8c29b0eae2, type: 2}
+      propertyPath: cameraDist
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fc8932d0bb9e942449b97a8c29b0eae2, type: 2}
