@@ -64,13 +64,13 @@ public class GameManager : MonoBehaviour {
 		}		
 		else if (gameState == GameStates.LEVELSELECT) 
 		{
-			selGridInt = GUI.SelectionGrid(new Rect(480, 25, 320, 100), selGridInt, selStrings, 5);
+			selGridInt = GUI.SelectionGrid(new Rect(Screen.width / 2 + 40, 25, 320, 100), selGridInt, selStrings, 5);
 			
-			if (GUI.Button(new Rect(680, 430, 100, 20), "Accept") && selGridInt >= 0) {
+			if (GUI.Button(new Rect(Screen.width - 175, Screen.height - 50, 100, 20), "Accept") && selGridInt >= 0) {
 				Application.LoadLevel("Level" + (selGridInt + 1));
 				gameState = GameStates.PLAY;
 			}
-			if (GUI.Button(new Rect(25, 430, 100, 20), "Back")) {
+			if (GUI.Button(new Rect(25, Screen.height - 50, 100, 20), "Back")) {
 				Application.LoadLevel("Main Menu");
 			}
 		}
