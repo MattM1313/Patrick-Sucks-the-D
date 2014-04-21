@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300000, guid: 094cfe97c2f38794db60ac5b5ec72742, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c1961fe1b42a5d94e9b3a0b3d3c61978, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!232 &23200000
 DistanceJoint2D:
