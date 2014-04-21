@@ -6,6 +6,20 @@ public class GameManager : MonoBehaviour {
 	private static bool _created;
     // gameState Option should display a different version of Playstate Options
 
+    public Texture[] buttons;
+
+    public enum ButtonTextureID {
+        ACCEPT = 0,
+        BACK,
+        NO,
+        OPTIONS,
+        QUIT,
+        RESUME,
+        RETURN,
+        START,
+        YES,
+    }
+
 	public enum GameStates {TITLE, PLAY, LEVELSELECT, PAUSE, OPTIONS, EXIT};
 	private static GameStates gameState;
 
@@ -70,7 +84,7 @@ public class GameManager : MonoBehaviour {
 				Application.LoadLevel("Level" + (selGridInt + 1));
 				gameState = GameStates.PLAY;
 			}
-			if (GUI.Button(new Rect(25, Screen.height - 50, 100, 20), "Back")) {
+			if (GUI.Button(new Rect(25, Screen.height - 50, 100, 20), buttons[(int)ButtonTextureID.BACK])) {
 				Application.LoadLevel("Main Menu");
 			}
 		}
