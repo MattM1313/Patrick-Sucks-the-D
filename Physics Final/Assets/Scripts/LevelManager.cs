@@ -11,15 +11,25 @@ public class LevelManager : MonoBehaviour {
 
     private static float countdownTimer = 0;
     private static bool isCountingDown = true;
-    private static int countDownState = 0;
+    private static int countDownState = 1;
     private const float COUNTDOWN_TIME = 2.5f;
+
+	private bool showCountdown = false;
 
     void Start() {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         player.IsFrozen = true;
 
         lastCheckpoint = player.gameObject.transform.position;
+
+		Invoke("countDownLabel", 3);
     }
+
+	public void countDownLabel()
+	{
+		showCountdown = !showCountdown;
+
+	}
 
     void Update() {
         if (isCountingDown) {
@@ -69,6 +79,19 @@ public class LevelManager : MonoBehaviour {
     public void OnGUI()
     {
         GUI.Label(new Rect(10,10, 200,50), new GUIContent("Your Time: "+ timer));
-    }
+
+		if(!showCountdown)
+		{
+			if(countDownState == 0)
+			{
+				GUI.Label(new Rect(Screen.width * 0.5f - 100f, Screen.height * 0.5f - 200f, 100f, 50f),"GO!");
+			}
+
+			else
+			{
+				GUI.Label(new Rect(Screen.width * 0.5f - 100f, Screen.height * 0.5f - 200f, 100f, 50f),"Countown: " + countDownState);
+			}
+		}
+	}
 
 }
