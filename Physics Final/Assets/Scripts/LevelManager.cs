@@ -41,12 +41,6 @@ public class LevelManager : MonoBehaviour {
 
         bool showCountdown = true;
 
-
-		if (!isMusicPlaying)
-		{
-			AudioManager.me.PlayClip(3, AudioChannel.Music);
-			isMusicPlaying = true;
-		}
 	}
 
 	public void countDownLabel()
@@ -56,6 +50,13 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	void Update() {
+        if (!isMusicPlaying && AudioManager.me != null)
+        {
+            AudioManager.me.PlayClip(3, AudioChannel.Music);
+            isMusicPlaying = true;
+        }
+
+
 		if (isCountingDown) {
 			countdownTimer += Time.deltaTime;
 
@@ -105,6 +106,7 @@ public class LevelManager : MonoBehaviour {
 		if ((GameManager.Level) > 5)
 		{
 			GameManager.ChangeState = GameManager.GameStates.LEVELSELECT;
+            isMusicPlaying = false;
 			GameManager.musicPlaying = false;
 			Application.LoadLevel("Main Menu");
 		}
