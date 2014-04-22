@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour {
 			gameState = GameStates.PLAY;
 			Time.timeScale = 1.0f;
 
-			Application.LoadLevel("Level" + (selGridInt + 1));
+			Application.LoadLevel("Level" + Level);
 		}
 	}
 

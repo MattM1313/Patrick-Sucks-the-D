@@ -30,6 +30,18 @@ public class LevelManager : MonoBehaviour {
 
 		Invoke("countDownLabel", 3);
 
+
+        /// Reset the static values
+        checkpointsHit = 0;
+        timer = 0;
+
+        countdownTimer = 0;
+        isCountingDown = true;
+        countDownState = 0;
+
+        bool showCountdown = true;
+
+
 		if (!isMusicPlaying)
 		{
 			AudioManager.me.PlayClip(3, AudioChannel.Music);
@@ -88,7 +100,7 @@ public class LevelManager : MonoBehaviour {
    
 		Debug.Log("Level finished in " + timer);
 
-		GameManager.Level++;
+		++GameManager.Level;
 
 		if ((GameManager.Level) > 5)
 		{
