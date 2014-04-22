@@ -101,6 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbd61ac52b95e9d4c8c96c9c3f9362da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttons: []
   selGridInt: 0
 --- !u!4 &273378898
 Transform:

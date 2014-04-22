@@ -12,11 +12,13 @@ public class LevelManager : MonoBehaviour {
 
 	private static float countdownTimer = 0;
 	private static bool isCountingDown = true;
-	private static int countDownState = 1;
+	private static int countDownState = 0;
 
 	private const float COUNTDOWN_TIME = 2.5f;
 
-	private bool showCountdown = false;
+	private bool showCountdown = true;
+
+    public AudioClip audioCountdown, audioGo;
 
 	void Start() {
 		player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
@@ -29,7 +31,7 @@ public class LevelManager : MonoBehaviour {
 
 	public void countDownLabel()
 	{
-		showCountdown = !showCountdown;
+        showCountdown = false;
 
 	}
 
@@ -37,21 +39,30 @@ public class LevelManager : MonoBehaviour {
 		if (isCountingDown) {
 			countdownTimer += Time.deltaTime;
 
-			if (countdownTimer >= COUNTDOWN_TIME / 4 * (countDownState + 1)) {
-				++countDownState;
-				Debug.Log("Countown: " + countDownState);
+            if (countdownTimer == Time.deltaTime) {
+                audio.PlayOneShot(audioCountdown);
+            }
+			if (countdownTimer >= COUNTDOWN_TIME / 3 * (countDownState + 1)) {
+                if (countdownTimer >= COUNTDOWN_TIME) {
+                    isCountingDown = false;
+                    countdownTimer = 0;
+                    countDownState = 0;
+                    player.IsFrozen = false;
+                    player.IsControllable = true;
+
+                    audio.PlayOneShot(audioGo);
+                }
+                else {
+                    ++countDownState;
+                    audio.PlayOneShot(audioCountdown);
+                }
 			}
-			if (countdownTimer >= COUNTDOWN_TIME) {
-				isCountingDown = false;
-				countdownTimer = 0;
-				countDownState = 0;
-				player.IsFrozen = false;
-				player.IsControllable = true;
-				Debug.Log("GO");
-			}
+			
 		}
 		else {
-			timer += Time.deltaTime;
+            if (!player.IsFrozen) {
+                timer += Time.deltaTime;
+            }
 		}
 	}
 	
@@ -63,7 +74,7 @@ public class LevelManager : MonoBehaviour {
 
 	public static void FinishLevel() {
 		++checkpointsHit;
-		player.IsControllable = true;
+		player.IsControllable = false;
 		Debug.Log("Level finished in " + timer);
 	}
 
@@ -80,16 +91,16 @@ public class LevelManager : MonoBehaviour {
 
 	public void OnGUI()
 	{
-		if(!showCountdown)
+		if(showCountdown)
 		{
-			if(countDownState == 0)
+			if(!isCountingDown)
 			{
 				GUI.Label(new Rect(Screen.width * 0.55f - 100f, Screen.height * 0.5f - 200f, 100f, 50f), "GO!", guiStyle);
 			}
 
 			else
 			{
-				GUI.Label(new Rect(Screen.width * 0.55f - 100f, Screen.height * 0.5f - 200f, 100f, 50f), ""+countDownState, guiStyle);
+				GUI.Label(new Rect(Screen.width * 0.55f - 100f, Screen.height * 0.5f - 200f, 100f, 50f), "" + (countDownState + 1), guiStyle);
 			}
 		}
 		else
