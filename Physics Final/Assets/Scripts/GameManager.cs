@@ -66,14 +66,17 @@ public class GameManager : MonoBehaviour {
 			GUILayout.BeginVertical (); //("box");	
 
 			if (GUILayout.Button ("Start")) {
+                AudioManager.me.PlayClip(2, AudioChannel.SoundEffects);
 				gameState = GameStates.LEVELSELECT;
 			}		
 
 			if (GUILayout.Button ("Options")) {
+                AudioManager.me.PlayClip(2, AudioChannel.SoundEffects);
 				gameState = GameStates.OPTIONS;
 			}
 
 			if (GUILayout.Button ("Quit")) {
+                AudioManager.me.PlayClip(2, AudioChannel.SoundEffects);
 				gameState = GameStates.EXIT;
 			}
 
@@ -85,10 +88,12 @@ public class GameManager : MonoBehaviour {
 			selGridInt = GUI.SelectionGrid(new Rect(Screen.width / 2 + 40, 25, 320, 100), selGridInt, selStrings, 5);
 			
 			if (GUI.Button(new Rect(Screen.width - 175, Screen.height - 50, 100, 20), "Accept") && selGridInt >= 0) {
+                AudioManager.me.PlayClip(2, AudioChannel.SoundEffects);
 				Application.LoadLevel("Level" + (selGridInt + 1));
 				gameState = GameStates.PLAY;
 			}
 			if (GUI.Button(new Rect(25, Screen.height - 50, 100, 20), "Back")) {
+                AudioManager.me.PlayClip(2, AudioChannel.SoundEffects);
                 gameState = GameStates.TITLE;
 				//Application.LoadLevel("Main Menu");
 			}
@@ -97,6 +102,7 @@ public class GameManager : MonoBehaviour {
 		{
 			if (Input.GetKeyDown(KeyCode.Escape)) 
 			{
+                AudioManager.me.PlayClip(2, AudioChannel.SoundEffects);
 				//pController = GameObject.FindObjectOfType<PlayerController>();
 				//Debug.Log(pController.ToString());
 				gameState = GameStates.PAUSE;
@@ -109,10 +115,12 @@ public class GameManager : MonoBehaviour {
 			GUILayout.BeginArea (guiMenuPos);
 			GUILayout.BeginVertical ();
 			if (GUILayout.Button ("Resume")) {
+                AudioManager.me.PlayClip(2, AudioChannel.SoundEffects);
 				gameState = GameStates.PLAY;
 				Time.timeScale = 1;
 			}
 			if (GUILayout.Button ("Return to Main Menu")) {
+                AudioManager.me.PlayClip(2, AudioChannel.SoundEffects);
 				gameState = GameStates.TITLE;
 				Application.LoadLevel("Main Menu");
 			}			
@@ -126,6 +134,7 @@ public class GameManager : MonoBehaviour {
 			GUILayout.BeginArea (guiMenuPos);
 			GUILayout.BeginVertical ();
 			if (GUILayout.Button ("Return")) {
+                AudioManager.me.PlayClip(2, AudioChannel.SoundEffects);
 				gameState = GameStates.TITLE;
 			}
 			GUILayout.EndVertical ();
@@ -139,10 +148,12 @@ public class GameManager : MonoBehaviour {
 			GUILayout.BeginVertical ();
 
 			if (GUILayout.Button ("Yes")) {
+                AudioManager.me.PlayClip(2, AudioChannel.SoundEffects);
 				Application.Quit ();
 			}
 					
 			if (GUILayout.Button ("No")) {
+                AudioManager.me.PlayClip(2, AudioChannel.SoundEffects);
 				gameState = GameStates.TITLE;
 			}
 
