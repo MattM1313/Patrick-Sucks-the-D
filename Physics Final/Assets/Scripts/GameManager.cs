@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour {
     public Texture[] buttons;
 
     public enum ButtonTextureID {
-        ACCEPT = 0,
+        ACCEPT,
         BACK,
         NO,
         OPTIONS,
@@ -84,7 +84,7 @@ public class GameManager : MonoBehaviour {
 				Application.LoadLevel("Level" + (selGridInt + 1));
 				gameState = GameStates.PLAY;
 			}
-			if (GUI.Button(new Rect(25, Screen.height - 50, 100, 20), buttons[(int)ButtonTextureID.BACK])) {
+			if (GUI.Button(new Rect(25, Screen.height - 50, 100, 20), "Back")) {
 				Application.LoadLevel("Main Menu");
 			}
 		}
