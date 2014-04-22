@@ -11,7 +11,6 @@ public class PlayerController : MonoBehaviour {
     private const int FLIP_DELAY = 1;
     private bool canFlip = true;
 
-    private bool isControllable;
     public bool IsControllable { get; set; }
 
     private bool isFrozen;
@@ -20,7 +19,7 @@ public class PlayerController : MonoBehaviour {
         set {
             isFrozen = value;
             if (isFrozen) {
-                isControllable = false;
+                IsControllable = false;
             }
 
             gameObject.rigidbody2D.gravityScale = isFrozen ? 0 : 1;
@@ -29,7 +28,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     void Update() {
-        if (!isControllable) {
+        if (IsControllable) {
             if (touchingWheel) {
                 if (Input.GetAxis("Horizontal") != 0) {
                     wheel.rigidbody2D.AddTorque(torqueForce * -Input.GetAxis("Horizontal"));
