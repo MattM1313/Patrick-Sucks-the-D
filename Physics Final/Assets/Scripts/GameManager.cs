@@ -44,6 +44,8 @@ public class GameManager : MonoBehaviour {
 			DontDestroyOnLoad (gameObject);
 		} else
 			Destroy (gameObject);
+
+        AudioManager.me.PlayClip(0, AudioChannel.Music);
 	}
 	
 	// Update is called once per frame

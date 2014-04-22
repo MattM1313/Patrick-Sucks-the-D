@@ -387,7 +387,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicChannel: {fileID: 1862107168}
   soundEffectChannel: {fileID: 1862107171}
-  audioClips: []
+  audioClips:
+  - {fileID: 8300000, guid: a27f87d9bbcf74b42baf9d661c5906e9, type: 3}
 --- !u!4 &1862107170
 Transform:
   m_ObjectHideFlags: 0
