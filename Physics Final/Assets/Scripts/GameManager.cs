@@ -44,13 +44,10 @@ public class GameManager : MonoBehaviour {
 			DontDestroyOnLoad (gameObject);
 		} else
 			Destroy (gameObject);
-
 	}
 	
 	// Update is called once per frame
-	void Update () 
-	{
-	
+	void Update () {
 	}
 
 	void OnGUI()
