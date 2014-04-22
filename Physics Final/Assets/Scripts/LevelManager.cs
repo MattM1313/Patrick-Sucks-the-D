@@ -75,7 +75,12 @@ public class LevelManager : MonoBehaviour {
 	public static void FinishLevel() {
 		++checkpointsHit;
 		player.IsControllable = false;
+
+        timer += Time.deltaTime;
+   
 		Debug.Log("Level finished in " + timer);
+        GameManager.gameState = GameManager.GameStates.LEVELSELECT; 
+        Application.LoadLevel("Main Menu");
 	}
 
 	public static void ResetToCheckpoint() {

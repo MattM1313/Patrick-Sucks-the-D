@@ -22,12 +22,16 @@ public class AudioManager : MonoBehaviour {
         switch (channel)
         {
             case AudioChannel.Music:
-                if (musicChannel.clip == audioClips[id]) { return; }
-                musicChannel.clip = audioClips[id];
+                if (musicChannel.clip != audioClips[id])
+                {
+                    musicChannel.clip = audioClips[id];
+                }
                 break;
             case AudioChannel.SoundEffects:
-                if (soundEffectChannel.clip == audioClips[id]) { return; }
-                soundEffectChannel.clip = audioClips[id];
+                if (soundEffectChannel.clip != audioClips[id])
+                {
+                    soundEffectChannel.clip = audioClips[id];
+                }
                 break;
             default:
                 break;
@@ -69,6 +73,21 @@ public class AudioManager : MonoBehaviour {
                 break;
             case AudioChannel.SoundEffects:
                 soundEffectChannel.Stop(); 
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void ToggleLoop(AudioChannel channel)
+    {
+        switch (channel)
+        {
+            case AudioChannel.Music:
+                musicChannel.loop = !musicChannel.loop;
+                break;
+            case AudioChannel.SoundEffects:
+                soundEffectChannel.loop = !musicChannel.loop;
                 break;
             default:
                 break;

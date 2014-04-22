@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour {
     }
 
 	public enum GameStates {TITLE, PLAY, LEVELSELECT, PAUSE, OPTIONS, EXIT};
-	private static GameStates gameState;
+	public static GameStates gameState = GameStates.TITLE;
 
 	public int selGridInt;
 	private string[] selStrings = new string[] {"Level 1", "Level 2", "Level 3", "Level 4", "Level 5", "Level 6", "Level 7", "Level 8", "Level 9", "Level 10", "Level 11", "Level 12", "Level 13", "Level 14", "Level 15"};
@@ -32,11 +32,12 @@ public class GameManager : MonoBehaviour {
 
 	private static int level;
     private static int number;
+    private bool musicPlaying = false;
 
 	// Use this for initialization
 	void Start () 
 	{
-        gameState = GameStates.TITLE;
+        //gameState = GameStates.TITLE;
 
 		if (!_created) 
 		{
@@ -45,12 +46,16 @@ public class GameManager : MonoBehaviour {
 		} else
 			Destroy (gameObject);
 
-        AudioManager.me.PlayClip(0, AudioChannel.Music);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	}
+        if (AudioManager.me != null && musicPlaying == false)
+        {
+            AudioManager.me.PlayClip(0, AudioChannel.Music);
+            musicPlaying = true;
+        }
+    }
 
 	void OnGUI()
 	{
@@ -84,7 +89,8 @@ public class GameManager : MonoBehaviour {
 				gameState = GameStates.PLAY;
 			}
 			if (GUI.Button(new Rect(25, Screen.height - 50, 100, 20), "Back")) {
-				Application.LoadLevel("Main Menu");
+                gameState = GameStates.TITLE;
+				//Application.LoadLevel("Main Menu");
 			}
 		}
 		else if (gameState == GameStates.PLAY) 
