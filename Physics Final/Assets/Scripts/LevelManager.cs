@@ -18,7 +18,9 @@ public class LevelManager : MonoBehaviour {
 
 	private bool showCountdown = true;
 
-    public AudioClip audioCountdown, audioGo;
+	public AudioClip audioCountdown, audioGo;
+
+	private static bool isMusicPlaying = false;
 
 	void Start() {
 		player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
@@ -27,11 +29,17 @@ public class LevelManager : MonoBehaviour {
 		lastCheckpoint = player.gameObject.transform.position;
 
 		Invoke("countDownLabel", 3);
+
+		if (!isMusicPlaying)
+		{
+			AudioManager.me.PlayClip(3, AudioChannel.Music);
+			isMusicPlaying = true;
+		}
 	}
 
 	public void countDownLabel()
 	{
-        showCountdown = false;
+		showCountdown = false;
 
 	}
 
@@ -39,30 +47,30 @@ public class LevelManager : MonoBehaviour {
 		if (isCountingDown) {
 			countdownTimer += Time.deltaTime;
 
-            if (countdownTimer == Time.deltaTime) {
-                audio.PlayOneShot(audioCountdown);
-            }
+			if (countdownTimer == Time.deltaTime) {
+				audio.PlayOneShot(audioCountdown);
+			}
 			if (countdownTimer >= COUNTDOWN_TIME / 3 * (countDownState + 1)) {
-                if (countdownTimer >= COUNTDOWN_TIME) {
-                    isCountingDown = false;
-                    countdownTimer = 0;
-                    countDownState = 0;
-                    player.IsFrozen = false;
-                    player.IsControllable = true;
+				if (countdownTimer >= COUNTDOWN_TIME) {
+					isCountingDown = false;
+					countdownTimer = 0;
+					countDownState = 0;
+					player.IsFrozen = false;
+					player.IsControllable = true;
 
-                    audio.PlayOneShot(audioGo);
-                }
-                else {
-                    ++countDownState;
-                    audio.PlayOneShot(audioCountdown);
-                }
+					audio.PlayOneShot(audioGo);
+				}
+				else {
+					++countDownState;
+					audio.PlayOneShot(audioCountdown);
+				}
 			}
 			
 		}
 		else {
-            if (!player.IsFrozen) {
-                timer += Time.deltaTime;
-            }
+			if (!player.IsFrozen) {
+				timer += Time.deltaTime;
+			}
 		}
 	}
 	
@@ -76,11 +84,24 @@ public class LevelManager : MonoBehaviour {
 		++checkpointsHit;
 		player.IsControllable = false;
 
-        timer += Time.deltaTime;
+		timer += Time.deltaTime;
    
 		Debug.Log("Level finished in " + timer);
-        GameManager.gameState = GameManager.GameStates.LEVELSELECT; 
-        Application.LoadLevel("Main Menu");
+
+		GameManager.Level++;
+
+		if ((GameManager.Level) > 5)
+		{
+			GameManager.ChangeState = GameManager.GameStates.LEVELSELECT;
+			GameManager.musicPlaying = false;
+			Application.LoadLevel("Main Menu");
+		}
+		else
+		{
+			GameManager.ChangeState = GameManager.GameStates.LOADNEXTLEVEL;
+			Application.LoadLevel("Main Menu");
+			//Application.LoadLevel("Level" + (GameManager.Level));
+		}
 	}
 
 	public static void ResetToCheckpoint() {

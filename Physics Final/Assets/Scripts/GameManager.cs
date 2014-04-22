@@ -4,24 +4,24 @@ using System.Collections;
 public class GameManager : MonoBehaviour {
 
 	private static bool _created;
-    // gameState Option should display a different version of Playstate Options
+	// gameState Option should display a different version of Playstate Options
 
-    public Texture[] buttons;
+	public Texture[] buttons;
 
-    public enum ButtonTextureID {
-        ACCEPT,
-        BACK,
-        NO,
-        OPTIONS,
-        QUIT,
-        RESUME,
-        RETURN,
-        START,
-        YES,
-    }
+	public enum ButtonTextureID {
+		ACCEPT,
+		BACK,
+		NO,
+		OPTIONS,
+		QUIT,
+		RESUME,
+		RETURN,
+		START,
+		YES,
+	}
 
-	public enum GameStates {TITLE, PLAY, LEVELSELECT, PAUSE, OPTIONS, EXIT};
-	public static GameStates gameState = GameStates.TITLE;
+	public enum GameStates {TITLE, PLAY, LEVELSELECT, LOADNEXTLEVEL, PAUSE, OPTIONS, EXIT};
+	private static GameStates gameState = GameStates.TITLE;
 
 	public int selGridInt;
 	private string[] selStrings = new string[] {"Level 1", "Level 2", "Level 3", "Level 4", "Level 5", "Level 6", "Level 7", "Level 8", "Level 9", "Level 10", "Level 11", "Level 12", "Level 13", "Level 14", "Level 15"};
@@ -31,13 +31,13 @@ public class GameManager : MonoBehaviour {
 	Rect guiMenuPos = new Rect (Screen.width * 0.5f - 75, Screen.height * 0.3f, 150, 150);
 
 	private static int level;
-    private static int number;
-    private bool musicPlaying = false;
+	private static int number;
+	public static bool musicPlaying = false;
 
 	// Use this for initialization
 	void Start () 
 	{
-        //gameState = GameStates.TITLE;
+		//gameState = GameStates.TITLE;
 
 		if (!_created) 
 		{
@@ -50,12 +50,20 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (AudioManager.me != null && musicPlaying == false)
-        {
-            AudioManager.me.PlayClip(0, AudioChannel.Music);
-            musicPlaying = true;
-        }
-    }
+		if (AudioManager.me != null && musicPlaying == false)
+		{
+			AudioManager.me.PlayClip(0, AudioChannel.Music);
+			musicPlaying = true;
+		}
+
+		if (gameState == GameStates.LOADNEXTLEVEL)
+		{
+			gameState = GameStates.PLAY;
+			Time.timeScale = 1.0f;
+
+			Application.LoadLevel("Level" + (selGridInt + 1));
+		}
+	}
 
 	void OnGUI()
 	{
@@ -66,17 +74,17 @@ public class GameManager : MonoBehaviour {
 			GUILayout.BeginVertical (); //("box");	
 
 			if (GUILayout.Button ("Start")) {
-                AudioManager.me.PlayClip(2, AudioChannel.SoundEffects);
+				AudioManager.me.PlayClip(2, AudioChannel.SoundEffects);
 				gameState = GameStates.LEVELSELECT;
 			}		
 
 			if (GUILayout.Button ("Options")) {
-                AudioManager.me.PlayClip(2, AudioChannel.SoundEffects);
+				AudioManager.me.PlayClip(2, AudioChannel.SoundEffects);
 				gameState = GameStates.OPTIONS;
 			}
 
 			if (GUILayout.Button ("Quit")) {
-                AudioManager.me.PlayClip(2, AudioChannel.SoundEffects);
+				AudioManager.me.PlayClip(2, AudioChannel.SoundEffects);
 				gameState = GameStates.EXIT;
 			}
 
@@ -88,13 +96,14 @@ public class GameManager : MonoBehaviour {
 			selGridInt = GUI.SelectionGrid(new Rect(Screen.width / 2 + 40, 25, 320, 100), selGridInt, selStrings, 5);
 			
 			if (GUI.Button(new Rect(Screen.width - 175, Screen.height - 50, 100, 20), "Accept") && selGridInt >= 0) {
-                AudioManager.me.PlayClip(2, AudioChannel.SoundEffects);
+				AudioManager.me.PlayClip(2, AudioChannel.SoundEffects);
 				Application.LoadLevel("Level" + (selGridInt + 1));
+				Level = selGridInt + 1;
 				gameState = GameStates.PLAY;
 			}
 			if (GUI.Button(new Rect(25, Screen.height - 50, 100, 20), "Back")) {
-                AudioManager.me.PlayClip(2, AudioChannel.SoundEffects);
-                gameState = GameStates.TITLE;
+				AudioManager.me.PlayClip(2, AudioChannel.SoundEffects);
+				gameState = GameStates.TITLE;
 				//Application.LoadLevel("Main Menu");
 			}
 		}
@@ -102,7 +111,7 @@ public class GameManager : MonoBehaviour {
 		{
 			if (Input.GetKeyDown(KeyCode.Escape)) 
 			{
-                AudioManager.me.PlayClip(2, AudioChannel.SoundEffects);
+				AudioManager.me.PlayClip(2, AudioChannel.SoundEffects);
 				//pController = GameObject.FindObjectOfType<PlayerController>();
 				//Debug.Log(pController.ToString());
 				gameState = GameStates.PAUSE;
@@ -114,13 +123,14 @@ public class GameManager : MonoBehaviour {
 			//pController.IsFrozen = false;
 			GUILayout.BeginArea (guiMenuPos);
 			GUILayout.BeginVertical ();
-			if (GUILayout.Button ("Resume")) {
-                AudioManager.me.PlayClip(2, AudioChannel.SoundEffects);
+			if (GUILayout.Button("Resume"))
+			{
+				AudioManager.me.PlayClip(2, AudioChannel.SoundEffects);
 				gameState = GameStates.PLAY;
 				Time.timeScale = 1;
 			}
 			if (GUILayout.Button ("Return to Main Menu")) {
-                AudioManager.me.PlayClip(2, AudioChannel.SoundEffects);
+				AudioManager.me.PlayClip(2, AudioChannel.SoundEffects);
 				gameState = GameStates.TITLE;
 				Application.LoadLevel("Main Menu");
 			}			
@@ -134,7 +144,7 @@ public class GameManager : MonoBehaviour {
 			GUILayout.BeginArea (guiMenuPos);
 			GUILayout.BeginVertical ();
 			if (GUILayout.Button ("Return")) {
-                AudioManager.me.PlayClip(2, AudioChannel.SoundEffects);
+				AudioManager.me.PlayClip(2, AudioChannel.SoundEffects);
 				gameState = GameStates.TITLE;
 			}
 			GUILayout.EndVertical ();
@@ -148,12 +158,12 @@ public class GameManager : MonoBehaviour {
 			GUILayout.BeginVertical ();
 
 			if (GUILayout.Button ("Yes")) {
-                AudioManager.me.PlayClip(2, AudioChannel.SoundEffects);
+				AudioManager.me.PlayClip(2, AudioChannel.SoundEffects);
 				Application.Quit ();
 			}
 					
 			if (GUILayout.Button ("No")) {
-                AudioManager.me.PlayClip(2, AudioChannel.SoundEffects);
+				AudioManager.me.PlayClip(2, AudioChannel.SoundEffects);
 				gameState = GameStates.TITLE;
 			}
 
@@ -182,9 +192,9 @@ public class GameManager : MonoBehaviour {
 		get { return level; }
 		set { level = value; }
 	}
-    public static int Number
-    {
-        get { return number; }
-        set { number = value; }
-    }
+	public static int Number
+	{
+		get { return number; }
+		set { number = value; }
+	}
 }
